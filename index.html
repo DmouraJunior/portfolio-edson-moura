@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#081426">
+  <meta name="description" content="Portfólio profissional de Edson Moura, Desenvolvedor Full Stack. Desenvolvimento front-end, back-end, sistemas web, automação de processos, intranets e dashboards.">
+  <title>Edson Moura | Desenvolvedor Full Stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f7fb;
+      --surface: #ffffff;
+      --ink: #14233b;
+      --muted: #68778d;
+      --line: #e5ebf3;
+      --navy: #081426;
+      --navy-2: #10223b;
+      --blue: #477df5;
+      --blue-dark: #285bd2;
+      --cyan: #55c7dc;
+      --green: #2ab98b;
+      --shadow: 0 22px 55px rgba(24, 47, 83, .10);
+      --radius: 22px;
+      --max: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+
+    /* Navegação */
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 20;
+      background: rgba(8, 20, 38, .88);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(16px);
+    }
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; color: #fff; font-family: Manrope, sans-serif; font-weight: 800; letter-spacing: -.04em; }
+    .brand-mark {
+      width: 38px; height: 38px; display: grid; place-items: center;
+      color: #fff; font-size: 13px; border-radius: 12px;
+      background: linear-gradient(140deg, var(--blue), var(--cyan));
+      box-shadow: 0 7px 22px rgba(71,125,245,.3);
+    }
+    .brand span:last-child { font-size: 15px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: #c1cbda; font-size: 13px; font-weight: 600; }
+    .nav-links a { transition: color .2s ease; }
+    .nav-links a:hover { color: white; }
+    .nav-cta { padding: 10px 16px; border: 1px solid rgba(255,255,255,.22); border-radius: 10px; color: white !important; }
+    .menu-toggle { display: none; width: 42px; height: 42px; color: white; background: transparent; border: 1px solid rgba(255,255,255,.2); border-radius: 11px; cursor: pointer; }
+
+    /* Capa */
+    .hero {
+      position: relative;
+      min-height: 710px;
+      padding: 150px 0 90px;
+      overflow: hidden;
+      color: white;
+      background:
+        radial-gradient(ellipse at 77% 42%, rgba(58,112,221,.25), transparent 34%),
+        radial-gradient(ellipse at 13% 98%, rgba(30,155,185,.12), transparent 33%),
+        linear-gradient(135deg, #071224 0%, #0b1b32 58%, #10213a 100%);
+    }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; opacity: .20; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+    .hero::after { content: ""; position: absolute; width: 470px; height: 470px; right: -190px; top: 150px; border: 1px solid rgba(111,164,255,.13); border-radius: 50%; box-shadow: 0 0 0 45px rgba(111,164,255,.025), 0 0 0 95px rgba(111,164,255,.02); }
+    .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.12fr .88fr; align-items: center; gap: 65px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #a9c5ff; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 23px; height: 1px; background: var(--cyan); }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 670px; margin: 22px 0 20px; font-family: Manrope, sans-serif; font-size: clamp(42px, 5.6vw, 68px); line-height: 1.08; letter-spacing: -.055em; font-weight: 800; }
+    h1 .gradient { color: transparent; background: linear-gradient(90deg, #83aaff, #63d0df); -webkit-background-clip: text; background-clip: text; }
+    .hero-copy { max-width: 600px; color: #b4c1d3; font-size: 16px; line-height: 1.85; }
+    .hero-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 19px; border-radius: 11px; border: 1px solid transparent; font-size: 13px; font-weight: 700; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { color: white; background: linear-gradient(120deg, var(--blue), #3968dc); box-shadow: 0 12px 26px rgba(56,105,224,.27); }
+    .btn-primary:hover { box-shadow: 0 16px 32px rgba(56,105,224,.36); }
+    .btn-ghost { color: white; border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.035); }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 42px; color: #8fa1ba; font-size: 11px; }
+    .hero-meta span { display: inline-flex; align-items: center; gap: 8px; }
+    .hero-meta b { color: #e0e9f7; font-weight: 600; }
+    .tiny-dot { width: 6px; height: 6px; display: inline-block; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(42,185,139,.12); }
+
+    .portrait-area { min-height: 430px; display: grid; place-items: center; position: relative; }
+    .portrait-glow { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: rgba(57,116,230,.24); filter: blur(55px); }
+    .portrait-frame {
+      width: min(350px, 82vw); aspect-ratio: 4 / 5; position: relative; z-index: 1;
+      padding: 9px; border-radius: 30px; transform: rotate(2deg);
+      background: linear-gradient(145deg, rgba(138,181,255,.75), rgba(76,202,220,.18) 48%, rgba(255,255,255,.08));
+      box-shadow: 0 35px 85px rgba(0,0,0,.34);
+    }
+    .portrait-inner { position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 23px; background: linear-gradient(150deg, #203b61, #0d1a2d 70%); }
+    .portrait-inner img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 32%; }
+    .portrait-fallback { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.92); font: 800 78px Manrope, sans-serif; letter-spacing: -.1em; background: radial-gradient(circle at 50% 30%, #426aa7, transparent 45%), linear-gradient(145deg, #1c3657, #081426); }
+    .portrait-fallback small { position: absolute; bottom: 28px; font: 600 10px 'DM Sans', sans-serif; letter-spacing: .22em; color: #b5c6e0; }
+    .portrait-note { position: absolute; z-index: 2; right: -28px; bottom: 36px; padding: 14px 18px; border: 1px solid rgba(255,255,255,.14); border-radius: 14px; background: rgba(12,28,50,.88); box-shadow: 0 16px 35px rgba(0,0,0,.25); backdrop-filter: blur(12px); }
+    .portrait-note strong { display: block; color: white; font: 700 12px Manrope, sans-serif; }
+    .portrait-note span { color: #9eafc6; font-size: 10px; }
+
+    /* Seções */
+    section { padding: 105px 0; }
+    .section-heading { max-width: 650px; margin-bottom: 42px; }
+    .section-kicker { color: var(--blue-dark); font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .section-heading h2 { margin: 12px 0 13px; font: 800 clamp(30px, 4vw, 43px)/1.16 Manrope, sans-serif; letter-spacing: -.045em; color: #13243d; }
+    .section-heading p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.8; }
+    .about { background: white; }
+    .about-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 75px; align-items: start; }
+    .about-text { color: #5e6d83; font-size: 15px; line-height: 1.95; }
+    .about-text strong { color: #213653; }
+    .capabilities { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .capability { padding: 20px; min-height: 132px; border: 1px solid var(--line); border-radius: 16px; background: #fbfcfe; }
+    .capability-icon { width: 36px; height: 36px; display: grid; place-items: center; margin-bottom: 13px; border-radius: 10px; color: var(--blue-dark); background: #eaf0ff; }
+    .capability h3 { margin: 0 0 5px; font: 700 13px Manrope, sans-serif; }
+    .capability p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.55; }
+
+    .projects { background: var(--bg); }
+    .projects-top { display: flex; justify-content: space-between; align-items: end; gap: 25px; margin-bottom: 42px; }
+    .projects-top .section-heading { margin-bottom: 0; }
+    .project-count { flex: 0 0 auto; color: #7e8ca1; font-size: 12px; }
+    .project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    .project-card { overflow: hidden; border: 1px solid #e4eaf2; border-radius: var(--radius); background: white; box-shadow: 0 7px 25px rgba(27,52,88,.035); transition: transform .25s ease, box-shadow .25s ease; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .project-visual { min-height: 245px; padding: 22px; display: grid; place-items: center; overflow: hidden; background: linear-gradient(145deg, #eaf0fb, #f4f7fc); }
+    .project-screenshot {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+    .mock-window { width: 100%; max-width: 490px; min-height: 195px; overflow: hidden; border: 1px solid #dbe4f0; border-radius: 12px; background: #fff; box-shadow: 0 14px 32px rgba(27,55,96,.12); transform: perspective(900px) rotateX(2deg); }
+    .mock-top { height: 25px; display: flex; align-items: center; gap: 5px; padding: 0 10px; border-bottom: 1px solid #e9eef5; background: #fbfcfe; }
+    .mock-top i { width: 5px; height: 5px; border-radius: 50%; background: #c7d1df; }
+    .mock-top span { margin-left: 8px; color: #8b99ad; font-size: 7px; }
+    .mock-body { display: flex; min-height: 169px; }
+    .mock-sidebar { width: 65px; flex: 0 0 65px; padding: 12px 8px; background: #10223b; }
+    .mock-logo { width: 21px; height: 6px; margin: 0 0 14px 3px; border-radius: 3px; background: #6ea1ff; }
+    .mock-side-line { height: 4px; margin: 9px 3px; border-radius: 4px; background: rgba(255,255,255,.22); }
+    .mock-side-line.active { background: #74a4ff; }
+    .mock-main { flex: 1; min-width: 0; padding: 13px 15px; }
+    .mock-title { margin-bottom: 10px; color: #233650; font: 800 9px Manrope, sans-serif; }
+    .mock-subtitle { margin: -6px 0 10px; color: #8b98aa; font-size: 6px; }
+    .mock-filter-row { display: flex; gap: 6px; margin-bottom: 11px; }
+    .mock-filter { width: 55px; height: 13px; border: 1px solid #e2e8f1; border-radius: 4px; background: #f8faff; }
+    .mock-filter.short { width: 38px; }
+    .mock-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 10px; }
+    .mock-stat { padding: 7px; border: 1px solid #e8edf4; border-radius: 5px; }
+    .mock-stat b { display: block; color: #254b85; font: 800 10px Manrope, sans-serif; }
+    .mock-stat span { display: block; margin-top: 2px; color: #93a0b1; font-size: 5px; }
+    .mock-table { width: 100%; border-collapse: collapse; }
+    .mock-table td { height: 13px; border-bottom: 1px solid #eef1f6; }
+    .mock-table td:first-child { width: 37%; }
+    .mock-table td::after { content: ""; display: block; width: 64%; height: 3px; border-radius: 4px; background: #dce4ef; }
+    .mock-table tr:nth-child(2) td::after { width: 42%; }
+    .mock-table tr:nth-child(3) td::after { width: 75%; }
+
+    /* Preview da Intranet */
+    .preview-intranet { background: linear-gradient(145deg, #e7edf7, #f5f7fc); }
+    .intra-head { height: 33px; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; background: #10223b; color: white; font-size: 7px; font-weight: 700; }
+    .intra-head em { width: 46px; height: 9px; border-radius: 3px; background: #5c8df1; }
+    .intra-content { padding: 13px; }
+    .intra-banner { height: 48px; margin-bottom: 11px; padding: 9px 12px; border-radius: 6px; background: linear-gradient(110deg,#17365d,#3973c5); color: white; }
+    .intra-banner b { display: block; font: 800 10px Manrope,sans-serif; }
+    .intra-banner span { font-size: 6px; color: #c8d9f6; }
+    .intra-tiles { display: grid; grid-template-columns: repeat(4,1fr); gap: 7px; }
+    .intra-tile { height: 48px; display: grid; place-items: center; gap: 3px; border: 1px solid #e4eaf2; border-radius: 5px; color: #425b7b; background: #fff; font-size: 6px; }
+    .intra-tile b { font-size: 13px; color: #4a78ca; }
+
+    /* Preview da Central */
+    .preview-tickets { background: linear-gradient(145deg, #e8f2f4, #f5f8fb); }
+    .ticket-main { padding: 14px; }
+    .ticket-titlebar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 11px; }
+    .ticket-titlebar b { color: #233650; font: 800 9px Manrope,sans-serif; }
+    .ticket-titlebar span { padding: 4px 7px; border-radius: 4px; background: #e9f1ff; color: #3968c1; font-size: 6px; }
+    .ticket-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; margin-bottom: 12px; }
+    .ticket-kpi { padding: 8px; border-radius: 5px; background: #f6f9fc; border: 1px solid #e8edf2; }
+    .ticket-kpi b { display: block; color: #284e7b; font: 800 12px Manrope,sans-serif; }
+    .ticket-kpi span { color: #8392a6; font-size: 6px; }
+    .ticket-line { display: grid; grid-template-columns: 1.1fr 2fr .8fr; align-items: center; gap: 8px; height: 22px; border-bottom: 1px solid #edf1f5; }
+    .ticket-line i { height: 4px; border-radius: 3px; background: #dae3ed; }
+    .ticket-line em { width: 34px; height: 9px; border-radius: 9px; background: #dff5ed; }
+    .ticket-line:nth-child(odd) em { background: #fff1d9; }
+
+    /* Preview KPI */
+    .preview-kpi { background: linear-gradient(145deg, #f0ebfb, #f8f7fc); }
+    .kpi-main { padding: 14px; }
+    .kpi-topline { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .kpi-topline b { font: 800 9px Manrope,sans-serif; color: #2b3352; }
+    .kpi-topline span { font-size: 6px; color: #8290a5; }
+    .kpi-summary { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+    .kpi-box { padding: 8px; border: 1px solid #ece8f4; border-radius: 6px; background: #fff; }
+    .kpi-box strong { display: block; color: #6652ac; font: 800 13px Manrope,sans-serif; }
+    .kpi-box small { color: #8d95a8; font-size: 6px; }
+    .kpi-rank { display: flex; align-items: center; gap: 8px; padding: 6px 4px; border-bottom: 1px solid #efedf4; }
+    .kpi-medal { width: 15px; height: 15px; display: grid; place-items: center; border-radius: 50%; background: #f4e7b9; color: #986e13; font-size: 7px; }
+    .kpi-person { flex: 1; height: 4px; border-radius: 4px; background: #dce1ed; }
+    .kpi-points { width: 25px; height: 4px; border-radius: 4px; background: #ac9bdc; }
+
+    .project-content { padding: 25px 26px 27px; }
+    .project-label { display: inline-flex; padding: 6px 9px; margin-bottom: 12px; border-radius: 7px; color: #315fae; background: #edf3ff; font-size: 9px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; }
+    .project-content h3 { margin: 0 0 9px; color: #172943; font: 800 19px/1.3 Manrope,sans-serif; letter-spacing: -.025em; }
+    .project-content p { min-height: 68px; margin: 0; color: #6c7a8f; font-size: 12px; line-height: 1.8; }
+    .project-foot { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-top: 20px; padding-top: 17px; border-top: 1px solid #edf1f6; }
+    .project-type { color: #8996a8; font-size: 10px; }
+    .project-link { display: inline-flex; align-items: center; gap: 8px; color: var(--blue-dark); font-size: 11px; font-weight: 800; }
+    .project-link:hover { color: #173f9c; }
+    .project-link.disabled { color: #8b96a6; cursor: not-allowed; }
+    .project-note { margin-top: 10px; padding: 9px 11px; border-radius: 8px; color: #79602b; background: #fff8e9; font-size: 10px; line-height: 1.55; }
+    .visual-caption { width: 100%; max-width: 490px; margin-top: 8px; color: #8391a5; text-align: right; font-size: 8px; }
+
+    .approach { color: white; background: linear-gradient(120deg, #0b1b31, #122b49); }
+    .approach .section-kicker { color: #75bddd; }
+    .approach .section-heading h2 { color: white; }
+    .approach .section-heading p { color: #aab9cc; }
+    .steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; }
+    .step { padding: 23px 19px; border: 1px solid rgba(255,255,255,.12); border-radius: 15px; background: rgba(255,255,255,.035); }
+    .step-number { margin-bottom: 22px; color: #75bddd; font: 800 12px Manrope,sans-serif; }
+    .step h3 { margin-bottom: 7px; color: white; font: 700 14px Manrope,sans-serif; }
+    .step p { margin: 0; color: #9eafc4; font-size: 11px; line-height: 1.75; }
+
+    .contact { background: white; }
+    .contact-panel { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 39px 42px; border: 1px solid #e4eaf2; border-radius: 22px; background: linear-gradient(115deg, #f5f8ff, #f7fbfc); }
+    .contact-panel h2 { margin: 0 0 8px; color: #162943; font: 800 clamp(24px,3vw,32px)/1.2 Manrope,sans-serif; letter-spacing: -.04em; }
+    .contact-panel p { max-width: 570px; margin: 0; color: #6e7d92; font-size: 13px; line-height: 1.75; }
+    .contact-mark { width: 54px; height: 54px; flex: 0 0 54px; display: grid; place-items: center; border-radius: 16px; color: #3c70df; background: #e7efff; font-size: 23px; }
+
+    footer { padding: 25px 0; color: #91a0b5; background: #081426; font-size: 10px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .footer-name { color: #e7edf7; font-weight: 700; }
+    .back-top { color: #b2c5e4; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .hero { min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr .72fr; gap: 25px; }
+      .portrait-area { min-height: 360px; }
+      .portrait-frame { width: min(290px, 100%); }
+      .about-grid { gap: 35px; }
+      .steps { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(var(--max), calc(100% - 34px)); }
+      .nav { height: 68px; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; padding: 18px 24px 22px; flex-direction: column; align-items: stretch; gap: 17px; background: #0a192d; border-bottom: 1px solid rgba(255,255,255,.1); }
+      .nav-links.open { display: flex; }
+      .nav-cta { text-align: center; }
+      .hero { padding: 122px 0 65px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 25px; }
+      h1 { font-size: clamp(41px, 12vw, 57px); }
+      .hero-copy { font-size: 14px; }
+      .hero-meta { gap: 13px; margin-top: 28px; }
+      .portrait-area { min-height: 350px; margin-top: 3px; }
+      .portrait-frame { width: 245px; }
+      .portrait-note { right: max(0px, calc(50% - 165px)); bottom: 22px; }
+      section { padding: 75px 0; }
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .capabilities { gap: 10px; }
+      .capability { padding: 16px; min-height: 126px; }
+      .projects-top { display: block; }
+      .project-count { display: block; margin-top: 15px; }
+      .project-grid { grid-template-columns: 1fr; gap: 17px; }
+      .project-visual { min-height: 220px; padding: 16px; }
+      .project-content { padding: 22px; }
+      .project-content p { min-height: auto; }
+      .steps { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .step { padding: 18px 15px; }
+      .contact-panel { align-items: flex-start; padding: 27px 23px; }
+      .contact-mark { display: none; }
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+    @media (max-width: 390px) {
+      .capabilities, .steps { grid-template-columns: 1fr; }
+      .project-foot { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#inicio" aria-label="Edson Moura - início">
+        <span class="brand-mark">EM</span>
+        <span>EDSON MOURA<span style="color:#79a8ff">.</span></span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Atuação</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#processo">Processo</a>
+        <a class="nav-cta" href="#contato">Vamos conversar ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <div class="eyebrow">Desenvolvedor Full Stack</div>
+          <h1>Olá, eu sou<br><span class="gradient">Edson Moura.</span></h1>
+          <p class="hero-copy">Desenvolvedor Full Stack focado na criação de soluções digitais completas, atuando do front-end ao back-end para simplificar rotinas, organizar informações e ajudar pessoas e equipes a alcançar melhores resultados.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projetos">Conheça meus projetos <span>↗</span></a>
+            <a class="btn btn-ghost" href="#sobre">Minha atuação <span>↓</span></a>
+          </div>
+          <div class="hero-meta">
+            <span><i class="tiny-dot"></i> <b>Desenvolvedor Full Stack</b></span>
+            <span>Web · Sistemas · Automação</span>
+            <span>Projetos em destaque</span>
+          </div>
+        </div>
+        <div class="portrait-area" aria-label="Foto de Edson Moura, Desenvolvedor Full Stack">
+          <div class="portrait-glow"></div>
+          <div class="portrait-frame">
+            <div class="portrait-inner">
+              <div class="portrait-fallback" id="portraitFallback">EM<small>EDSON MOURA · FULL STACK DEVELOPER</small></div>
+              <img src="capa.png" alt="Foto de Edson Moura" onerror="this.style.display='none'" onload="document.getElementById('portraitFallback').style.display='none'">
+            </div>
+          </div>
+          <div class="portrait-note"><strong>Edson Moura</strong><span>Desenvolvedor Full Stack</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="container about-grid">
+        <div class="section-heading reveal">
+          <div class="section-kicker">Sobre mim</div>
+          <h2>Tecnologia aplicada a desafios reais.</h2>
+          <p>Desenvolvimento com propósito: entender a necessidade, estruturar a solução e entregar uma experiência simples para quem utiliza.</p>
+          <div class="about-text" style="margin-top:20px">
+            Como Desenvolvedor Full Stack, atuo na construção de soluções completas, desde as interfaces com as quais as pessoas interagem até a lógica de funcionamento, integração e organização dos dados. Meu trabalho envolve transformar processos e necessidades do dia a dia em <strong>sistemas web, ferramentas de gestão e ambientes digitais</strong>, unindo organização, clareza visual e recursos que apoiem a tomada de decisão.
+            <br><br>
+            Cada projeto é pensado para atender a um objetivo: facilitar tarefas, centralizar informações, acompanhar resultados ou melhorar a comunicação entre equipes.
+          </div>
+        </div>
+        <div class="capabilities reveal" id="servicos">
+          <article class="capability">
+            <div class="capability-icon">⌘</div>
+            <h3>Sistemas web</h3>
+            <p>Aplicações sob medida para organizar operações e rotinas.</p>
+          </article>
+          <article class="capability">
+            <div class="capability-icon">↗</div>
+            <h3>Dashboards e indicadores</h3>
+            <p>Painéis visuais para acompanhar dados e resultados.</p>
+          </article>
+          <article class="capability">
+            <div class="capability-icon">⚙</div>
+            <h3>Automação de processos</h3>
+            <p>Redução de tarefas manuais e fluxos mais organizados.</p>
+          </article>
+          <article class="capability">
+            <div class="capability-icon">▦</div>
+            <h3>Portais e intranets</h3>
+            <p>Ambientes digitais para comunicação e serviços internos.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projetos">
+      <div class="container">
+        <div class="projects-top">
+          <div class="section-heading reveal">
+            <div class="section-kicker">Portfólio</div>
+            <h2>Projetos em destaque.</h2>
+            <p>Uma seleção de soluções desenvolvidas para apoiar a gestão, a comunicação e o acompanhamento de atividades.</p>
+          </div>
+          <div class="project-count">04 projetos apresentados</div>
+        </div>
+
+        <div class="project-grid">
+          <!-- SIMPA -->
+          <article class="project-card reveal">
+            <div class="project-visual">
+              <img class="project-screenshot" src="simpa.png" alt="Imagem real do sistema SIMPA">
+              <div class="visual-caption">Tela real do sistema SIMPA</div>
+            </div>
+            <div class="project-content">
+              <span class="project-label">Monitoramento · Gestão</span>
+              <h3>SIMPA</h3>
+              <p>Atuação na criação e manutenção do Sistema Integrado de Monitoramento, com filtros, indicadores, gestão de registros e acompanhamento de serviços e unidades.</p>
+              <div class="project-foot"><span class="project-type">Sistema web</span><a class="project-link" href="https://diretoriafinanceira.github.io/simpa-monitoramento/#screen-secretaria-unidades" target="_blank" rel="noopener noreferrer">Acessar sistema <span>↗</span></a></div>
+            </div>
+          </article>
+
+          <!-- INTRANET -->
+          <article class="project-card reveal">
+            <div class="project-visual preview-intranet">
+              <img class="project-screenshot" src="intra.png" alt="Imagem real da Intranet DGF">
+              <div class="visual-caption">Tela real da Intranet DGF</div>
+            </div>
+            <div class="project-content">
+              <span class="project-label">Comunicação · Pessoas</span>
+              <h3>Intranet DGF</h3>
+              <p>Portal interno que reúne comunicação, notícias, gestão de pessoas, serviços corporativos, iniciativas sociais e conteúdos de aprendizagem em um ambiente centralizado.</p>
+              <div class="project-foot"><span class="project-type">Portal institucional</span><a class="project-link" href="https://diretoriafinanceira.github.io/intranet-dgf/" target="_blank" rel="noopener noreferrer">Acessar intranet <span>↗</span></a></div>
+            </div>
+          </article>
+
+          <!-- CENTRAL DE CHAMADOS -->
+          <article class="project-card reveal">
+            <div class="project-visual preview-tickets">
+              <img class="project-screenshot" src="central.png" alt="Imagem real da Central de Chamados DGF">
+              <div class="visual-caption">Tela real da Central de Chamados DGF</div>
+            </div>
+            <div class="project-content">
+              <span class="project-label">Atendimento · Organização</span>
+              <h3>Central de Chamados DGF</h3>
+              <p>Projeto voltado à centralização das solicitações internas, com uma interface própria para apoiar a organização e o acompanhamento do atendimento.</p>
+              <div class="project-foot"><span class="project-type">Sistema interno</span><span class="project-link disabled" aria-label="Acesso local indisponível para visitantes">Demonstração não publicada</span></div>
+              <div class="project-note">O endereço atualmente informado é local e só abre no computador/servidor onde a aplicação está executando. É necessário publicar o sistema para disponibilizar um link público.</div>
+            </div>
+          </article>
+
+          <!-- KPI -->
+          <article class="project-card reveal">
+            <div class="project-visual preview-kpi">
+              <img class="project-screenshot" src="kpi.png" alt="Imagem real do sistema KPI DGF">
+              <div class="visual-caption">Tela real do sistema KPI DGF</div>
+            </div>
+            <div class="project-content">
+              <span class="project-label">Indicadores · Reconhecimento</span>
+              <h3>KPI DGF</h3>
+              <p>Sistema de registro e valorização de conquistas dos colaboradores, com cadastro de realizações, descrição dos reconhecimentos e visão de destaque por meio de indicadores e ranking.</p>
+              <div class="project-foot"><span class="project-type">Sistema de gestão</span><a class="project-link" href="https://script.google.com/macros/s/AKfycbwvHExNcgn5FTXqnedvarsfCfy_NQ6xcduWmtIlP4L8D_fLU4mdnOAr65VlW5pxG46R/exec" target="_blank" rel="noopener noreferrer">Acessar sistema <span>↗</span></a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="approach" id="processo">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div class="section-kicker">Como trabalho</div>
+          <h2>Do desafio à solução.</h2>
+          <p>Um processo organizado ajuda a manter o foco no que realmente importa: resolver o problema e entregar uma ferramenta útil.</p>
+        </div>
+        <div class="steps">
+          <article class="step reveal"><div class="step-number">01 / ENTENDIMENTO</div><h3>Ouvir e mapear</h3><p>Compreender o cenário, as pessoas envolvidas e os objetivos do projeto.</p></article>
+          <article class="step reveal"><div class="step-number">02 / PLANEJAMENTO</div><h3>Definir a solução</h3><p>Organizar funcionalidades, prioridades e a experiência de uso.</p></article>
+          <article class="step reveal"><div class="step-number">03 / DESENVOLVIMENTO</div><h3>Construir e validar</h3><p>Desenvolver, testar e ajustar a aplicação conforme as necessidades.</p></article>
+          <article class="step reveal"><div class="step-number">04 / EVOLUÇÃO</div><h3>Aprimorar continuamente</h3><p>Identificar melhorias e evoluir a solução junto com o projeto.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contato">
+      <div class="container">
+        <div class="contact-panel reveal">
+          <div>
+            <div class="section-kicker" style="margin-bottom:10px">Próximo projeto</div>
+            <h2>Vamos transformar uma ideia em solução?</h2>
+            <p>Se você busca um sistema, um portal interno ou uma forma mais inteligente de organizar processos, estou aberto a conversar sobre novos desafios.</p>
+          </div>
+          <div class="contact-mark" aria-hidden="true">↗</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><span class="footer-name">EDSON MOURA</span> <span>· Desenvolvedor Full Stack</span></div>
+      <div>© <span id="year"></span> Edson Moura. Todos os direitos reservados.</div>
+      <a class="back-top" href="#inicio">Voltar ao topo ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Menu responsivo
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    // Ano automático no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Animação suave ao entrar na tela (com fallback para navegadores antigos)
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
